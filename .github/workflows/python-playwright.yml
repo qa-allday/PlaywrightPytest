@@ -30,7 +30,7 @@ jobs:
 
     - name: Run tests with pytest
       run: |
-        pytest --maxfail=1 --disable-warnings --tb=short --html=results/report.html --self-contained-html
+        pytest --maxfail=5 --disable-warnings --tb=short --html=results/report.html --self-contained-html
       continue-on-error: false
 
     - name: Upload test report as artifact

@@ -5,13 +5,13 @@ from datetime import datetime
 class FileUtils:
     def delete_all_files_in_dir(self, output_dir="output/api-responses"):
         dir_path = Path.cwd() / output_dir
-        try:
+        if dir_path.exists() and dir_path.is_dir():
             for file_path in dir_path.iterdir():
                 if file_path.is_file():
                     file_path.unlink()
             print(f"✅ All files deleted in: {dir_path}")
-        except Exception as e:
-            print(f"❌ Failed to delete files: {e}")
+        else:
+            print(f"ℹ️ Directory does not exist: {dir_path}")
 
     def save_json_with_timestamp(self, data, name):
         timestamp = int(datetime.now().timestamp() * 1000)
