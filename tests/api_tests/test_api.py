@@ -3,10 +3,6 @@ from helpers.user_data import generate_new_user_api_data
 
 
 class TestApi:
-    @pytest.fixture(autouse=True)
-    def teardown_method(self, file_utils):
-        file_utils.delete_all_files_in_dir()
-
     def test_get_all_products(self, api, file_utils):
         response = api.get_products()
         data = response.json()
@@ -36,3 +32,7 @@ class TestApi:
         data = response.json()
         assert data["responseCode"] == 404
         assert data["message"] == "User not found!"
+
+    @pytest.fixture(autouse=True)
+    def teardown_method(self, file_utils):
+        file_utils.delete_all_files_in_dir()
